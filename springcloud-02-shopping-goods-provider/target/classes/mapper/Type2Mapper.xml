@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springcloud.dao.Type2Mapper">
+  <resultMap id="BaseResultMap" type="com.springcloud.entity.Type2">
+    <id column="type2_id" jdbcType="INTEGER" property="type2Id" />
+    <result column="type2_name" jdbcType="VARCHAR" property="type2Name" />
+    <result column="type1_id" jdbcType="INTEGER" property="type1Id" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from type2
+    where type2_id = #{type2Id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springcloud.entity.Type2">
+    insert into type2 (type2_id, type2_name, type1_id, 
+      remark)
+    values (#{type2Id,jdbcType=INTEGER}, #{type2Name,jdbcType=VARCHAR}, #{type1Id,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.springcloud.entity.Type2">
+    update type2
+    set type2_name = #{type2Name,jdbcType=VARCHAR},
+      type1_id = #{type1Id,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where type2_id = #{type2Id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select type2_id, type2_name, type1_id, remark
+    from type2
+    where type2_id = #{type2Id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select type2_id, type2_name, type1_id, remark
+    from type2
+  </select>
+  
+  <select id="selectByType1Id" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select type2_id, type2_name, type1_id, remark
+    from type2
+    where type1_id = #{type1Id,jdbcType=INTEGER}
+  </select>
+</mapper>

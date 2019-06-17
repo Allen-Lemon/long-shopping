@@ -1,0 +1,9 @@
+server:
+  port: 6001
+eureka:  instance:    hostname: localhost:6001    #设置euraka的服务器地址
+  client:
+    register-with-eureka: false #不需要注册到eureka服务器上    fetch-registry: false       #从euraka服务器上获取注册信息，就是检索，默认为true
+    service-url:      defaultZone: http://localhost:6003/eureka,http://localhost:6002/eureka
+      
+
+ 

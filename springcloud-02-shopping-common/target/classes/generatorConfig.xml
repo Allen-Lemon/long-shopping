@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<!-- 配置连接数据库的jar包的位置 -->
+  <classPathEntry location="D:/MavenDemo/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"/>
+  <context id="mysql" targetRuntime="Mybatis3Simple">
+  <!-- 关闭自动生成的注解 -->
+  <commentGenerator>
+    <property name="suppressAllComments" value="true"/>
+ <!-- 设置数据库的连接信息 -->
+  </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/springcloud_demo" 
+    driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
+    
+    <!-- 设置实体类的位置 -->
+    <javaModelGenerator targetPackage="com.springcloud.entity"
+    targetProject="springcloud-02-shopping-common/src/main/java" />
+    
+    <!-- 设置sql文件的映射位置 -->
+    <sqlMapGenerator targetPackage="mapper"
+    targetProject="springcloud-02-shopping-orders-provider/src/main/resources" />
+    
+    <!-- 配置mybatis的mapper接口type: ANNOTATEDMAPPER：生成以注解的方式，把接口跟注解生成在一个地方
+    XMLMAPPER：生成的接口完全依赖于xml配置文件
+    -->
+    <javaClientGenerator targetPackage="com.springcloud.dao"
+    targetProject="springcloud-02-shopping-orders-provider/src/main/java" type="XMLMAPPER" />
+    
+    <!-- 可以有多个table标签，但是必须有一个,这个标签是用来实现数据库吧表中的数据生成实体类跟映射文件 -->
+    <!--schema数据库中的名字，tableName生成的名字当数据表名有下划线的 时候就是数据库表的名字，不然mybatis不能自动生成  -->
+    <table schema="order_detail" tableName="order_detail">
+    <!-- 是否使用表中的字段名来命名 -->
+      <property name="userActualColumnNames" value="false"/>
+    </table>
+     
+  </context>
+</generatorConfiguration>

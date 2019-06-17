@@ -1,0 +1,9 @@
+server:
+  port: 7002
+eureka:
+  client:
+    register-with-eureka: false  #设置当前项目不需要注册到eureka的服务器上，因为这里我们是客户端失去找服务的
+    service-url:
+      defaultZone: http://localhost:6001/eureka,http://localhost:6002/eureka,http://localhost:6003/eureka  #Eureka Server注册服务的地址
+
+
